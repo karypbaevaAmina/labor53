@@ -1,2 +1,4 @@
-package com.example.lab53.controller;public class SubscribeController {
+package com.example.lab53.controller;
+
+public class SubscribeController {
 }

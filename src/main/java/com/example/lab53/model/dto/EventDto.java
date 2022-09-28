@@ -1,4 +1,4 @@
-package com.example.lab53.dto;
+package com.example.lab53.model.dto;
 
 import lombok.Builder;
 import lombok.Data;

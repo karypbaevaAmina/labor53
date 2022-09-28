@@ -1,6 +1,5 @@
-package com.example.lab53.dto;
+package com.example.lab53.model.dto;
 
-import com.example.lab53.model.Event;
 import lombok.Builder;
 import lombok.Data;
 
