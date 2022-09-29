@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class SubscribeDto {
     private Long id;
     private EventDto event;

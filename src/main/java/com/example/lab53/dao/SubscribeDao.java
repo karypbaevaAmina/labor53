@@ -21,8 +21,8 @@ public class SubscribeDao {
     private final JdbcTemplate jdbcTemplate;
 
     public Optional<Subscribe> findById(Long id){
-        String sql = "select * from subscribe " +
-                "where event_id = ?;";
+        String sql = "select * from subscribe  " +
+                "where id = ?;";
         return Optional.of(jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Subscribe.class), id));
     }
 

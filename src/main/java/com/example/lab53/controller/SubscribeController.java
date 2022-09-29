@@ -31,7 +31,7 @@ public class SubscribeController {
 
 
 
-    //подписка на событие
+    //подписка на событие добавляет в таблицу
     //http://localhost:8898/create?eventId=3&email=uuuu@uuu
     @PostMapping("/create")
     public ResponseEntity<?> createSubscribe (@RequestParam Long eventId, @RequestParam String email){
