@@ -49,6 +49,7 @@ public class EventDao {
         jdbcTemplate.update(sql, id);
     }
 
+
     public List<Event> findBySubscribeEmail(String email){
         String sql = "select e.* " +
                 "from event e, " +

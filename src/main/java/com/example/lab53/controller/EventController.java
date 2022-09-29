@@ -25,12 +25,12 @@ public class EventController {
     }
 
     @GetMapping
-    public List<EventDto> getAll() {
+    public List<EventDto> getAll() {   //весь список событий
         return eventService.getAll();
     }
 
     @GetMapping("/{email}")
-    public List<EventDto> getAllSubscribe(@PathVariable String email){
+    public List<EventDto> getAllSubscribe(@PathVariable String email){   // весь список событий через электронную почту
         return eventService.getAllBySubscribe(email);
     }
 

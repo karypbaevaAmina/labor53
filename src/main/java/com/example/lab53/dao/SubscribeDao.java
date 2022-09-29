@@ -1,5 +1,6 @@
 package com.example.lab53.dao;
 
+import com.example.lab53.model.Event;
 import com.example.lab53.model.Subscribe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,7 +21,9 @@ public class SubscribeDao {
     private final JdbcTemplate jdbcTemplate;
 
     public Optional<Subscribe> findById(Long id){
-        return Optional.empty();
+        String sql = "select * from subscribe " +
+                "where event_id = ?;";
+        return Optional.of(jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Subscribe.class), id));
     }
 
     public Optional<Subscribe> findByEmail(String email){
@@ -35,7 +38,7 @@ public class SubscribeDao {
         return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Subscribe.class), email, eventId));
     }
 
-    public Long create(String email, Long eventId) {
+    public Long create(Long eventId, String email) {
         String sql = "insert into subscribe (event_id, email, register_date_time) " +
                 "values (?, ?, ?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -50,6 +53,10 @@ public class SubscribeDao {
     }
 
     public void delete(Long id){
+        String sql = "delete "+
+                "from subscribe  " +
+                "where event_id= ?";
+        jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Subscribe.class), id);
 
     }
 }

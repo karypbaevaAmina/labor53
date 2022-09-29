@@ -19,8 +19,8 @@ public class SubscribeService {
     private final SubscribeDao subscribeDao;
     private final EventDao eventDao;
 
-    public ResponseEntity<?> createASubscription(String email, Long eventId) {
-        Long id = subscribeDao.create(email, eventId);
+    public ResponseEntity<?> createASubscription(Long eventId, String email) {
+        Long id = subscribeDao.create(eventId, email);
         Subscribe subscribe = subscribeDao.findById(id).orElseThrow();
         Event event = eventDao.findById(subscribe.getEvent().getId()).orElseThrow();
 
@@ -39,10 +39,15 @@ public class SubscribeService {
                 .registerDateTime(subscribe.getRegisterDateTime())
                 .build(),
                 HttpStatus.OK);
+
     }
 
-    public void deleteSubscription(String email, Long eventId){
-        Subscribe subscribe = subscribeDao.findByEmailAndEventId(email, eventId).orElseThrow();
-        subscribeDao.delete(subscribe.getId());
+    public String deleteSubscription(String email, Long eventId){
+        try {
+            Subscribe subscribe = subscribeDao.findByEmailAndEventId(email, eventId).orElseThrow();
+            subscribeDao.delete(subscribe.getId());
+        } finally {
+            return "You selected your subscribe";
+        }
     }
 }
