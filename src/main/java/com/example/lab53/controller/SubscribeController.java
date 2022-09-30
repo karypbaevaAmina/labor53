@@ -24,14 +24,15 @@ public class SubscribeController {
     //удаление подписки через идентификатор и почту
     //http://localhost:8898/sub?email=qwe@qwe.qwe&eventId=2
     @DeleteMapping ("/sub")
-    public String deleteSubscribe(@RequestParam String email, @RequestParam Long eventId){   //удаление подписки через идентификатор и почту
-        return  subscribeService.deleteSubscription(email, eventId);
+    public String deleteSubscribe(@RequestParam String email, @RequestParam Long eventId) {   //удаление подписки через идентификатор и почту
+        try {
+            return subscribeService.deleteSubscription(email, eventId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-
-
-
-    //подписка на событие добавляет в таблицу
+        //подписка на событие добавляет в таблицу
     //http://localhost:8898/create?eventId=3&email=uuuu@uuu
     @PostMapping("/create")
     public ResponseEntity<?> createSubscribe (@RequestParam Long eventId, @RequestParam String email){

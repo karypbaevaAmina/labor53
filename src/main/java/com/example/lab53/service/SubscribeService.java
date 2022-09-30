@@ -42,12 +42,12 @@ public class SubscribeService {
 
     }
 
-    public String deleteSubscription(String email, Long eventId){
-        try {
+    public String deleteSubscription(String email, Long eventId) {
             Subscribe subscribe = subscribeDao.findByEmailAndEventId(email, eventId).orElseThrow();
             subscribeDao.delete(subscribe.getId());
-        } finally {
-            return "You selected your subscribe";
-        }
+            return email;
+
+
     }
+
 }
